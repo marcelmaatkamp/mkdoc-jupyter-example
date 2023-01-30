@@ -4,5 +4,9 @@ site_url: https://example.com/
 nav:
     - Home: index.md
     - About: about.md
-    
+    - Notebook: ais.ipynb
+
 theme: readthedocs
+
+plugins:
+  - mkdocs-jupyter

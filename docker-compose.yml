@@ -21,16 +21,19 @@ services:
       ADMINER_DEFAULT_DB_NAME: postgres
 
   jupyter:
-    image: jupyter/datascience-notebook:2023-01-30
+    # image: jupyter/datascience-notebook:2023-01-30
     command: start-notebook.sh --NotebookApp.token=''
+    build:
+      context: etc/jupyter
     depends_on:
       - postgres
     ports:
-      - 8888:8888 
+      - 8888:8888
+    volumes:
+      - ./etc/jupyter/work:/home/jovyan/work
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
       
-
   mkdocs:
     # image: squidfunk/mkdocs-material:9.0.8
     depends_on:
