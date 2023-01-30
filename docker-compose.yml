@@ -20,4 +20,24 @@ services:
       ADMINER_DEFAULT_DB_HOST: postgres
       ADMINER_DEFAULT_DB_NAME: postgres
 
+  jupyter:
+    image: jupyter/datascience-notebook:2023-01-30
+    command: start-notebook.sh --NotebookApp.token=''
+    depends_on:
+      - postgres
+    ports:
+      - 8888:8888 
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
+      
 
+  mkdocs:
+    # image: squidfunk/mkdocs-material:9.0.8
+    depends_on:
+      - jupyter
+    build:
+      context: etc/mkdocs
+    ports:
+      - 8000:8000 
+    volumes:
+      - .:/docs

@@ -1,2 +1,1 @@
-# mkdoc-jupyter-example
-mkdoc-jupyter-example
+# mkdocs-jupyter-example
