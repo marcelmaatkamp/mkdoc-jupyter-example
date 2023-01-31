@@ -4,9 +4,9 @@ services:
   postgres: 
     image: postgres:14
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - ./etc/postgres/sample.csv:/data/sample.csv
       - ./etc/postgres/sample.sql:/docker-entrypoint-initdb.d/sample.sql
@@ -21,10 +21,11 @@ services:
       ADMINER_DEFAULT_DB_NAME: postgres
 
   jupyter:
-    # image: jupyter/datascience-notebook:2023-01-30
     command: start-notebook.sh --NotebookApp.token=''
     build:
       context: etc/jupyter
+      args:
+        SQLALCHEMY_VERSION: ${SQLALCHEMY_VERSION}
     depends_on:
       - postgres
     ports:
@@ -40,7 +41,11 @@ services:
       - jupyter
     build:
       context: etc/mkdocs
+      args:
+        SQLALCHEMY_VERSION: ${SQLALCHEMY_VERSION}      
     ports:
       - 8000:8000 
     volumes:
       - .:/docs
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres      

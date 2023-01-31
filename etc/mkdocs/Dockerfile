@@ -3,8 +3,13 @@ FROM squidfunk/mkdocs-material:9.0.8
 RUN \
  apk update &&\
  apk add \
-    g++
+    g++ \
+    build-base
 
+ARG SQLALCHEMY_VERSION
 RUN \
   pip install \
-    mkdocs-jupyter
+    mkdocs-jupyter \
+    SQLAlchemy==${SQLALCHEMY_VERSION} \
+    matplotlib \
+    seaborn
