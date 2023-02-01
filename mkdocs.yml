@@ -157,4 +157,9 @@ markdown_extensions:
 nav:
   - Home: index.md
   - About: about.md
-  - Notebook: ais.ipynb
+  - Jupiter: 
+    - Ais: jupyter/ais.ipynb
+    - Python DataScience Handbook: 
+      - Simple Plots: jupyter/PythonDataScienceHandbook/04.01-simple-line-plots.ipynb
+      - Seaborn: jupyter/PythonDataScienceHandbook/04.14-visualization-with-seaborn.ipynb
+    - PyVista: jupyter/pyvista/pyvista.ipynb
