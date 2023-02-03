@@ -36,7 +36,6 @@ services:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
       
   mkdocs:
-    # image: squidfunk/mkdocs-material:9.0.8
     depends_on:
       - jupyter
     build:
@@ -46,8 +45,8 @@ services:
     ports:
       - 8000:8000 
     volumes:
-      - .:/docs
       - /home/marcel/.ssh/id_rsa:/root/.ssh/id_rsa
       - /home/marcel/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub
+      - .
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres      

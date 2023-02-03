@@ -153,13 +153,14 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
-
 nav:
   - Home: index.md
   - About: about.md
   - Jupiter: 
-    - Ais: jupyter/ais.ipynb
+    - AIS: 
+      - marinecadastre.gov data : jupyter/ais.ipynb
     - Python DataScience Handbook: 
       - Simple Plots: jupyter/PythonDataScienceHandbook/04.01-simple-line-plots.ipynb
       - Seaborn: jupyter/PythonDataScienceHandbook/04.14-visualization-with-seaborn.ipynb
-    - PyVista: jupyter/pyvista/pyvista.ipynb
+    - PyVista: 
+      - PyVista: jupyter/pyvista/pyvista.ipynb
