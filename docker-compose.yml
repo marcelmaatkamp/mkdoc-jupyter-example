@@ -59,7 +59,7 @@ services:
     depends_on:
       - jupyter
     build:
-      context: etc/mkdocs
+      context: etc/mkdocs-jupyter
       args:
         JUPYTER_VERSION: ${JUPYTER_VERSION}
         MKDOCS_MATERIAL_VERSION: ${MKDOCS_MATERIAL_VERSION}
@@ -67,7 +67,7 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - ./etc/mkdocs/docs:/docs/docs
-      - ./etc/mkdocs/mkdocs.yml:/docs/mkdocs.yml
+      - ./etc/mkdocs-jupyter/docs:/docs/docs
+      - ./etc/mkdocs-jupyter/mkdocs.yml:/docs/mkdocs.yml
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
