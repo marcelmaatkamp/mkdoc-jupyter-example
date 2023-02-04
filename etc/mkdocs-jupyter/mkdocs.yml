@@ -90,7 +90,8 @@ plugins:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - minify:
       minify_html: true
-  - mkdocs-jupyter
+  - mkdocs-jupyter:
+      execute: True
 
 # Hooks
 hooks:
