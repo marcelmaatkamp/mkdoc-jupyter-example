@@ -1,0 +1,3 @@
+pip-compile etc/jupyter/requirements.in
+pip-compile etc/mkdocs/requirements.in
+
