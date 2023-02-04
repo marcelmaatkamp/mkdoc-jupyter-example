@@ -1,0 +1,8 @@
+ipython-sql
+psycopg2-binary
+SQLAlchemy==1.4.46
+matplotlib
+seaborn
+plotly
+mkdocs-material
+mkdocs-jupyter

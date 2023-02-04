@@ -1,4 +1,5 @@
-FROM squidfunk/mkdocs-material:9.0.10
+ARG MKDOCS_MATERIAL_VERSION
+FROM squidfunk/mkdocs-material:${MKDOCS_MATERIAL_VERSION}
 
 RUN \
  apk update &&\
@@ -6,14 +7,15 @@ RUN \
     g++ \
     build-base
 
-ARG SQLALCHEMY_VERSION
+COPY requirements.in requirements.in
 RUN \
-  pip install \
-    mkdocs-jupyter \
-    SQLAlchemy==${SQLALCHEMY_VERSION} \
-    matplotlib \
-    seaborn
+  pip install --upgrade \
+    pip \
+    pip-tools &&\
+  pip-compile requirements.in  --resolver=backtracking --max-rounds 20 --verbose &&\
+  pip install -r requirements.txt
 
-COPY material /docs/material 
-COPY docs /docs/docs 
+RUN  pip install -r requirements.txt
+COPY material /docs/material
+COPY docs /docs/docs
 COPY mkdocs.yml /docs/mkdocs.yml

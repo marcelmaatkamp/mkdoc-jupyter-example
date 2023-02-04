@@ -1,0 +1,17 @@
+ipython-sql
+psycopg2-binary
+SQLAlchemy==1.4.46
+matplotlib
+seaborn
+plotly
+pyvista==0.38.1
+ipyvtklink
+ipympl
+ipycanvas
+pythreejs
+ipygany
+itkwidgets
+ipyvtklink
+trame
+ipywidgets
+panel

@@ -21,10 +21,12 @@ services:
       ADMINER_DEFAULT_DB_NAME: postgres
 
   jupyter:
+    image: marcelmaatkamp/mkdocs-jupyter-example-jupyter:${JUPYTER_VERSION}
     command: start-notebook.sh --NotebookApp.token=''
     build:
       context: etc/jupyter
       args:
+        JUPYTER_VERSION: ${JUPYTER_VERSION}
         SQLALCHEMY_VERSION: ${SQLALCHEMY_VERSION}
     depends_on:
       - postgres
@@ -36,17 +38,38 @@ services:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
       
   mkdocs:
+    image: marcelmaatkamp/mkdocs-jupiter-example-mkdocs:${MKDOCS_MATERIAL_VERSION}
     depends_on:
       - jupyter
     build:
       context: etc/mkdocs
       args:
+        MKDOCS_MATERIAL_VERSION: ${MKDOCS_MATERIAL_VERSION}
         SQLALCHEMY_VERSION: ${SQLALCHEMY_VERSION}      
     ports:
       - 8000:8000 
     volumes:
       - /home/marcel/.ssh/id_rsa:/root/.ssh/id_rsa
       - /home/marcel/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub
-      - .
+      - ./etc/mkdocs/docs:/docs/docs
     environment:
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres      
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
+
+  mkdocs-jupyter:
+    image: marcelmaatkamp/mkdocs-jupiter-example-mkdocs:${MKDOCS_MATERIAL_VERSION}
+    depends_on:
+      - jupyter
+    build:
+      context: etc/mkdocs
+      args:
+        JUPYTER_VERSION: ${JUPYTER_VERSION}
+        MKDOCS_MATERIAL_VERSION: ${MKDOCS_MATERIAL_VERSION}
+        SQLALCHEMY_VERSION: ${SQLALCHEMY_VERSION}
+    ports:
+      - 8000:8000
+    volumes:
+      - /home/marcel/.ssh/id_rsa:/root/.ssh/id_rsa
+      - /home/marcel/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub
+      - ./etc/mkdocs/docs:/docs/docs
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres

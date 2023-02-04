@@ -109,7 +109,7 @@ class InfoPlugin(BasePlugin[InfoPluginConfig]):
         # Create self-contained example from project
         files = []
         with ZipFile(archive, "a", ZIP_DEFLATED, False) as f:
-            for path in ["mkdocs.yml", "requirements.txt"]:
+            for path in ["mkdocs.yml", "requirements.in"]:
                 if os.path.isfile(path):
                     f.write(path, os.path.join(archive_name, path))
 
