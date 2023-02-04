@@ -6,3 +6,4 @@ seaborn
 plotly
 mkdocs-material
 mkdocs-jupyter
+ipykernel

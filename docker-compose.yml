@@ -47,10 +47,8 @@ services:
         MKDOCS_MATERIAL_VERSION: ${MKDOCS_MATERIAL_VERSION}
         SQLALCHEMY_VERSION: ${SQLALCHEMY_VERSION}      
     ports:
-      - 8000:8000 
+      - 0.0.0.0:8000:8000
     volumes:
-      - /home/marcel/.ssh/id_rsa:/root/.ssh/id_rsa
-      - /home/marcel/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub
       - ./etc/mkdocs/docs:/docs/docs
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres

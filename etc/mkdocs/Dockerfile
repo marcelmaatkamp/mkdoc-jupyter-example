@@ -5,7 +5,8 @@ RUN \
  apk update &&\
  apk add \
     g++ \
-    build-base
+    build-base \
+    linux-headers
 
 COPY requirements.in requirements.in
 RUN \
