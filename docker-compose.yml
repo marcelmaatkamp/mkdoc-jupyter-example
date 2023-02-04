@@ -67,8 +67,7 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - /home/marcel/.ssh/id_rsa:/root/.ssh/id_rsa
-      - /home/marcel/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub
       - ./etc/mkdocs/docs:/docs/docs
+      - ./etc/mkdocs/mkdocs.yml:/docs/mkdocs.yml
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
